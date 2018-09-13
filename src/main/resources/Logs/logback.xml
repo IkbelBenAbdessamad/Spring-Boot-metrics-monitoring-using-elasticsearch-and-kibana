@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include
+		resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+
+
+	<property name="spring.application.name" calue="service" />
+
+	<appender name="LogstashAppender"
+		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<destination>localhost:9600</destination>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+	</appender>
+
+
+
+	<logger name="javax.activation" level="WARN" />
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="stash" />
+	</root>
+
+</configuration>

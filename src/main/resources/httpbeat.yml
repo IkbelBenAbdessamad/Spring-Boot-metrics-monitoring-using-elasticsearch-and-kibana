@@ -1,0 +1,34 @@
+  ######################## Httpbeat Configuration Example ########################
+
+      ############################## Httpbeat ########################################
+      httpbeat:
+
+        hosts:
+          # Each - Host endpoints to call. Below are the host endpoint specific configurations
+         
+            schedule: "@every 30s"
+            url: http://localhost:9920/health
+            method: get
+            headers:
+              Accept: application/json
+            output_format: json
+            json_dot_mode: replace  #to avoid errors since some of the values in the metrics response contain a dot ('.')
+            
+            
+
+            schedule: "@every 30s"
+            url: http://localhost:9920/metrics
+            method: get
+            headers:
+              Accept: application/json
+            output_format: json
+            json_dot_mode: replace
+
+      #================================ General =====================================
+      fields:
+        app_id: test_app
+
+      #----------------------------- Logstash output --------------------------------
+      output.elasticsearch:
+        hosts: ["a5387d292ec048a7862ccaa4a2912201.europe-west3.gcp.cloud.es.io:9243/"]
+        index: "ikbel benabdessamad"
